@@ -1,14 +1,14 @@
-(function() {
+document.addEventListener("DOMContentLoaded", function () {
   const isMobile = /iphone|ipod|android|ipad/i.test(navigator.userAgent);
   if (!isMobile) return;
 
-  const script = document.currentScript;
+  const script = document.currentScript || document.querySelector('script[src*="smart-banner.js"]');
   const appName = script.getAttribute("data-app-name") || "Uygulamayı İndir";
   const appDesc = script.getAttribute("data-app-desc") || "";
   const appImage = script.getAttribute("data-app-image") || "";
   const iosUrl = script.getAttribute("data-ios-url");
   const androidUrl = script.getAttribute("data-android-url");
-  const position = script.getAttribute("data-position") || "top"; // top veya bottom
+  const position = script.getAttribute("data-position") || "top";
   const themeColor = script.getAttribute("data-theme") || "#000";
 
   const storeUrl = /android/i.test(navigator.userAgent) ? androidUrl : iosUrl;
@@ -45,4 +45,4 @@
   document.getElementById("close-banner").onclick = () => {
     banner.style.display = "none";
   };
-})();
+});
